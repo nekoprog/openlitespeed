@@ -218,12 +218,14 @@ prepareLinux()
                 OSTYPE=DEBIAN10
             elif echo $output | grep "Debian GNU/Linux 11"; then
                 OSTYPE=DEBIAN11
+            elif echo $output | grep "Debian GNU/Linux 12"; then
+                OSTYPE=DEBIAN12
             fi
         fi
         
         #other debian OS, we still can 
         if [ "${OSTYPE}" = "unknownlinux" ] ; then
-            echo It seems you are not using ubuntu 18/20/22 and Debian 9/10/11.
+            echo It seems you are not using ubuntu 18/20/22 and Debian 9/10/11/12.
             echo But we still can try to go further.
         fi
         
@@ -503,7 +505,7 @@ fi
 cd ..
 if [ ! -d third-party ]; then
 
-    git clone https://github.com/litespeedtech/third-party.git
+    git clone https://github.com/nekoprog/third-party.git
     mkdir third-party/lib64
     cd third-party/script/
 
@@ -647,7 +649,7 @@ else
 fi
 
 
-#Change to nogroup for debain/ubuntu
+#Change to nogroup for debian/ubuntu
 if [ -f /etc/debian_version ] ; then
     if [ "\${OPENLSWS_GROUP}" = "nobody" ] ; then
         OPENLSWS_GROUP=nogroup
